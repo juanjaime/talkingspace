@@ -34,7 +34,10 @@ class Template
         ob_start();
         include basename($this->template);
 
+        //echo $this->template;
+
         return ob_get_clean();
+
 
     }
 
