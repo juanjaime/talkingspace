@@ -26,7 +26,7 @@
         <div class="row">
             <div class="col-md-2">
                 <div class="user-info">
-                    <img class="avatar pull-left" src="images/avatars/<?php echo $topic->avatar;?>"  />
+                    <img class="avatar pull-left" src="images/avatars/<?php echo $reply->avatar;?>"  />
                     <ul>
                         <li><strong><?php echo $reply->username; ?></strong></li>
                         <li><?php echo userPostCount($reply->user_id);?> posts</li>
