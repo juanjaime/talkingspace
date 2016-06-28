@@ -20,6 +20,7 @@
         $topiccategory="A simple PHP forum engine";
     }
     ?>
+    <script src="templates/js/ckeditor/ckeditor.js"></script>
 </head>
 
 <body>
@@ -38,8 +39,8 @@
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
                 <li class="active"><a href="index.php">Home</a></li>
-                <li><a href="register.php">Create An Account</a></li>
-                <li><a href="create.php">Create Topic</a></li>
+                <?php if (!isLogged()):?><li><a href="register.php">Create An Account</a></li><?php else: ?>
+                <li><a href="create.php">Create Topic</a></li><?php endif; ?>
             </ul>
         </div><!--/.nav-collapse -->
     </div>

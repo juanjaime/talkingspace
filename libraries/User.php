@@ -80,4 +80,43 @@ class User
         }
     }
 
+    /**
+     * @return Database
+     */
+    public function login($username,$password)
+    {
+        $this->db->query("SELECT * FROM users WHERE username = :username AND  password= :password");
+        $this->db->bind(":username",$username);
+        $this->db->bind(":password",$password);
+        $row=$this->db->single();
+        if($this->db->rowCount()>0){
+            $this->setUserData($row);
+            return true;
+        }
+        else{
+            return false;
+        }
+        
+    }
+    private function setUserData($row){
+        $_SESSION['is_logged']=true;
+        $_SESSION['user_id']=$row->id;
+        $_SESSION['username']=$row->username;
+        $_SESSION['name']=$row->name;
+    }
+    public function logout()
+    {
+       // echo "User Class";
+        unset($_SESSION['is_logged']);
+        unset($_SESSION['user_id']);
+        unset($_SESSION['username']);
+        unset($_SESSION['name']);
+        return true;
+
+    }
+    public function getTotalUsers(){
+        $this->db->query('SELECT * FROM users');
+        $rows=$this->db->resultset();
+        return$this->db->rowCount();
+    }
 }

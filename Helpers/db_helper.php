@@ -21,6 +21,13 @@ function categoryCount($category_id)
     $rows = $db->resultset();
     return $db->rowCount();
 }
+function totalTopicCount()
+{
+    $db = new Database();
+    $db->query('SELECT * FROM topics  ');
+    $rows = $db->resultset();
+    return $db->rowCount();
+}
 function returnTopics($category_id)
 {
     $db = new Database();
@@ -28,6 +35,14 @@ function returnTopics($category_id)
     $db->bind(':category_id', $category_id);
     $rows = $db->resultset();
     return $rows;
+}
+function topicCount($category_id)
+{
+    $db = new Database();
+    $db->query('SELECT * FROM topics  WHERE category_id = :category_id');
+    $db->bind(':category_id', $category_id);
+    $rows = $db->resultset();
+    return $db->rowCount();
 }
 function categoryDisplay()
 {
